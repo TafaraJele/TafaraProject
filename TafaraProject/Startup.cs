@@ -26,9 +26,19 @@ namespace TafaraProject
             services.Configure<Employeedbset>(Configuration.GetSection(nameof(Employeedbset)));
             IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.IEmployeeRepository>)(sp => sp.GetRequiredService<IOptions<Employeedbset>>().Value));
 
-           services.AddSingleton<EmployeeService>();
-           services.AddSingleton<QualificationService>();
+            services.AddSingleton<EmployeeService>();
+            services.AddSingleton<QualificationService>();
 
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1",
+             new Microsoft.OpenApi.Models.OpenApiInfo
+             {
+                 Title = "HR Employees365 API",
+                 Description = "Managing Employees",
+                 Version = "v1",
+             });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +59,12 @@ namespace TafaraProject
             {
                 endpoints.MapControllers();
             });
+            app.UseSwagger();
+            app.UseSwaggerUI(Options =>
+            {
+                Options.SwaggerEndpoint("/swagger/v1/swagger.json", "HR Employees365 API");
+            });
+
         }
     }
 }
