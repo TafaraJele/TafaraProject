@@ -27,7 +27,9 @@ namespace TafaraProject
             IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.IEmployeeRepository>)(sp => sp.GetRequiredService<IOptions<Employeedbset>>().Value));
 
             services.AddSingleton<EmployeeService>();
-            services.AddSingleton<QualificationService>();
+           // services.AddSingleton<QualificationService>();
+
+            services.AddTransient<IEmployeeRepository, Employeedbset>();
 
             services.AddSwaggerGen(options =>
             {

@@ -1,4 +1,8 @@
-﻿namespace EmployeesRecord.Infrastructure
+﻿using EmployeesRecord.Core.Entities;
+using EmployeesRecord.Infrastructure.Entities;
+using System.Collections.Generic;
+
+namespace EmployeesRecord.Infrastructure
 {
     public interface IEmployeeRepository
     {
@@ -11,6 +15,12 @@
 
         string DatabaseName { get; set; }
 
+        List<EmployeeEntity> GetEmployees();
+        List<QualificationEntity> GetEmployeeQualifications();
+
+       // List<HRInformationEntity> HRInformation { get; }
     }
+
+
 }
 

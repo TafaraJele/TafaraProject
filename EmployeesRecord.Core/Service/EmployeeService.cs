@@ -11,29 +11,44 @@ namespace EmployeesRecord.Core.Service
     public class EmployeeService : IEmployeeService
     {
 
-        private readonly IMongoCollection<Employee> _employee;
+       
         private readonly IMongoCollection<EmployeeQualification> _qualification;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeService(IEmployeeRepository settings)
+        public EmployeeService(IEmployeeRepository  employeeRepository)
         {
 
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
-
-            _employee = database.GetCollection<Employee>(settings.EmployeeCollectionName);
-            _qualification = database.GetCollection<EmployeeQualification>(settings.QualificationCollectionName);
+            _employeeRepository = employeeRepository;
+         //   _qualification = database.GetCollection<EmployeeQualification>(settings.QualificationCollectionName);
 
 
         }
-        public List<Employee> GetEmployees() =>
+        public List<Employee> GetEmployees()
+        {
+            var employees = _employeeRepository.GetEmployees();
+
+           
+            
+            // map entity to dto
+            return employees;
+        }
+
+        public List<EmployeeQualification> GetEmployeeQualifications()
+
+        {
+
+           var qualifications = _qualification.GetEmployeeQualifications();
+
+            return qualifications;
+        }
 
 
-                _employee.Find(employee => true).ToList();
 
         public Employee Get(Guid Id)
         {
+            var employees = _employeeRepository.GetEmployees();
 
-            return _employee.Find(e => e.Id == Id).FirstOrDefault();
+            return employee;
 
 
         }
@@ -49,18 +64,19 @@ namespace EmployeesRecord.Core.Service
 
         }
 
-        public List<EmployeeQualification> GetEmployeeQualifications() =>
+       // public List<EmployeeQualification> GetEmployeeQualifications()
+       // {            return _qualification.Find(qualification => true).ToList();     }
 
-           _qualification.Find(qualification => true).ToList();
+           
 
-        public EmployeeQualification Create(EmployeeQualification employeeQualification)
-        {
-            _qualification.InsertOne(employeeQualification);
+        //public EmployeeQualification Create(EmployeeQualification employeeQualification)
+        //{
+        //   var qualifications = _qualification.InsertOne(employeeQualification);
 
-            return employeeQualification;
+        //    return qualifications;
 
 
-        }
+        //}
 
 
 
