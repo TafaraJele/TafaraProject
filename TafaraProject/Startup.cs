@@ -23,13 +23,12 @@ namespace TafaraProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.Configure<Employeedbset>(Configuration.GetSection(nameof(Employeedbset)));
-            IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.IEmployeeRepository>)(sp => sp.GetRequiredService<IOptions<Employeedbset>>().Value));
-
-            services.AddSingleton<EmployeeService>();
-           // services.AddSingleton<QualificationService>();
-
-            services.AddTransient<IEmployeeRepository, Employeedbset>();
+            services.Configure<EmployeeRepository>(Configuration.GetSection(nameof(EmployeeRepository)));
+            IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.IEmployeeRepository>)(sp => sp.GetRequiredService<IOptions<EmployeeRepository>>().Value));
+            services.AddTransient<EmployeeService>();
+            // services.AddTransient<IQualificationRepository, Employeedbset>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient< IQualificationRepository, QualificationRepository>();
 
             services.AddSwaggerGen(options =>
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeesRecord.Infrastructure.Entities
 {
-    class HRInformationEntity
+   public class HRInformationEntity
     {
         public int ECnumber { get; set; }
 

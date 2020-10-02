@@ -1,12 +1,21 @@
-﻿using System;
+﻿using EmployeesRecord.Infrastructure.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EmployeesRecord.Infrastructure.Entities
+namespace EmployeesRecord.Infrastructure
 {
-    interface IQualificationRepository
+    public interface IQualificationRepository
     {
-        List<QualificationEntity> GetQualifications();
+        string EmployeeCollectionName { get; set; }
+
+        string QualificationCollectionName { get; set; }
+
+        string ConnectionString { get; set; }
+
+        string DatabaseName { get; set; }
+
+        List<QualificationEntity> GetEmployeeQualifications();
 
 
 

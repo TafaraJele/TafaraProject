@@ -25,9 +25,15 @@ namespace EmployeesWrite.Controllers
 
 
         [HttpGet]
-        public ActionResult<List<EmployeeQualification>> GetEmployeeQualifications() =>
+        // public ActionResult<List<EmployeeQualification>> GetEmployeeQualifications() =>
 
-            qualificationService.GetEmployeeQualifications();
+        //qualificationService.GetEmployeeQualifications();
+        public ActionResult<List<EmployeeQualification>> GetEmployeeQualifications()
+        {
+            var result = qualificationService.GetEmployeeQualifications();
+
+            return Ok(result);
+        }
 
 
         // GET api/<QualificationController>/5
@@ -38,23 +44,23 @@ namespace EmployeesWrite.Controllers
         }
 
         // POST api/<QualificationController>
-        [HttpPost]
-        public string Create(EmployeeQualification employeeQualification)
-        {
-             qualificationService.Create(employeeQualification);
+        //[HttpPost]
+        //public string Create(EmployeeQualification employeeQualification)
+        //{
+        //     qualificationService.Create(employeeQualification);
 
-            return "successful";
+        //    return "successful";
 
-            // PUT api/<QualificationController>/5
-            //    [HttpPut("{id}")]
-            //public void Put(int id, [FromBody] string value)
-            //{
-            //}
+        // PUT api/<QualificationController>/5
+        //    [HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-            // DELETE api/<QualificationController>/5
-            //[HttpDelete("{id}")]
-            //public void Delete(int id)
-            //{
-        }
-    }
+        // DELETE api/<QualificationController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+   // }
+}
 }

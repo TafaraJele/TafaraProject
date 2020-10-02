@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EmployeesRecord.Infrastructure.Entities
 {
-    class QualificationEntity
+    public class QualificationEntity
     {
 
         public Guid Id { get; set; }

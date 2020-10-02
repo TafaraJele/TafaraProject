@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace EmployeesRecord.Core.Service
 {
-    interface IEmployeeService
+    public interface IEmployeeService
     {
         List<Employee> GetEmployees();
 
-        Employee Get(Guid Id);
+        //Employee Get(Guid Id);
 
-        Employee Create(Employee employee);
+       // Employee Create(Employee employee);
+
+        List<EmployeeQualification> GetEmployeeQualifications();
     }
 }
