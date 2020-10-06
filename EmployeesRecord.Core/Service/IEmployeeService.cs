@@ -12,8 +12,10 @@ namespace EmployeesRecord.Core.Service
 
         //Employee Get(Guid Id);
 
-       // Employee Create(Employee employee);
+        //Employee Create(Employee employee);
 
         List<EmployeeQualification> GetEmployeeQualifications();
+
+        List<HRInformation> GetHRInformation();
     }
 }

@@ -1,6 +1,7 @@
 
 using EmployeesRecord.Core.Service;
 using EmployeesRecord.Infrastructure;
+using EmployeesRecord.Infrastructure.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,13 +24,13 @@ namespace TafaraProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.Configure<EmployeeRepository>(Configuration.GetSection(nameof(EmployeeRepository)));
-            IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.IEmployeeRepository>)(sp => sp.GetRequiredService<IOptions<EmployeeRepository>>().Value));
+            services.Configure<Dbcontext>(Configuration.GetSection(nameof(Dbcontext)));
+            IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.Entities.Dbcontext>)(sp => sp.GetRequiredService<IOptions<Dbcontext>>().Value));
             services.AddTransient<EmployeeService>();
             // services.AddTransient<IQualificationRepository, Employeedbset>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient< IQualificationRepository, QualificationRepository>();
-
+            services.AddTransient<IHRInformationRepository, HRInformationRepository>();
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1",

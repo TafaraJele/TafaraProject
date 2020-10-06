@@ -1,11 +1,18 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace EmployeesRecord.Core.Models
 {
     [DataContract]
     public class HRInformation
     {
+        
+        [DataMember (Name = "employeeId")]
 
+        [Required]
+        public Guid EmployeeId  {get; set;}
+        
         [DataMember(Name = "ecNumber")]
         public int ECnumber { get; set; }
 

@@ -27,12 +27,7 @@ namespace TafaraProject.Controllers
             var result = employeeService.GetEmployees();
             return Ok(result);
         }
-
-
-
-
-
-
+                              
         // GET: api/Employee/5
         //[HttpGet]
         //[Route("{Id}")]
@@ -42,14 +37,14 @@ namespace TafaraProject.Controllers
 
 
 
-        // POST: api/Employee
-        //[HttpPost]
-        //public string Create(Employee employee)
-        //{
-        //    var employee1 = employeeService.Create(employee);
+        //POST: api/Employee
+       [HttpPost]
+        public string Create( [FromBody] Employee employee)
+        {
+            employeeService.Create(employee);
 
-        //    return employee1.Id.ToString();
-        //}
+            return employee.Id.ToString();
+        }
 
         // PUT: api/Employee/5
         [HttpPut("{id}")]

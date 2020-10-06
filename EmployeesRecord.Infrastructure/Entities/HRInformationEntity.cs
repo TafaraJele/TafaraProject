@@ -6,6 +6,8 @@ namespace EmployeesRecord.Infrastructure.Entities
 {
    public class HRInformationEntity
     {
+        public Guid EmployeeId { get; set; }
+
         public int ECnumber { get; set; }
 
         public int Salary { get; set; }

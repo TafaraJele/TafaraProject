@@ -10,36 +10,29 @@ namespace EmployeesRecord.Infrastructure
     {
         private readonly IMongoCollection<EmployeeEntity> _employee;
 
-       // private readonly IMongoCollection<HRInformationEntity> _hrinformation;
-        public string EmployeeCollectionName { get; set; }
-
-       // public string QualificationCollectionName { get; set; }
-
-      //  public string HRInformationCollectionName { get; set; }
-
-        public string ConnectionString { get; set; }
-
-        public string DatabaseName { get; set; }
-
-        public EmployeeRepository()
+       
+        public EmployeeRepository(Dbcontext dbcontext)
         {
-            var client = new MongoClient(ConnectionString);
-            var database = client.GetDatabase(DatabaseName);
-            _employee = database.GetCollection<EmployeeEntity>(EmployeeCollectionName);
+           
+            var client = new MongoClient(dbcontext.ConnectionString);
+            var database = client.GetDatabase(dbcontext.DatabaseName);
+            _employee = database.GetCollection<EmployeeEntity>(dbcontext.EmployeeCollectionName);
             
-            //_hrinformation = database.GetCollection<HRInformationEntity>(HRInformationCollectionName);
-        }
+            
+        }   
 
         public List<EmployeeEntity> GetEmployees()
         {
-            return _employee.Find(employee => true).ToList();
-        }
+            return _employee.Find(employee => true).ToList();        }
 
        
+        public string Create(EmployeeEntity employeeEntity)
+        {
+           _employee.InsertOne(employeeEntity);
 
-        // public List<HRInformationEntity> HRInformation => _hrinformation.Find(_hrinformation => true).ToList();
-
-
+            return "Employee successfully created";
+        }
+       
     }
 
 

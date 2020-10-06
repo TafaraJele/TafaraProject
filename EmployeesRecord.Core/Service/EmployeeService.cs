@@ -1,5 +1,8 @@
-﻿using EmployeesRecord.Core.Models;
+﻿using EmployeesRecord.Core.Entities;
+using EmployeesRecord.Core.Models;
 using EmployeesRecord.Infrastructure;
+using EmployeesRecord.Infrastructure.Entities;
+using System;
 using System.Collections.Generic;
 
 
@@ -12,15 +15,16 @@ namespace EmployeesRecord.Core.Service
         //private readonly IMongoCollection<EmployeeQualification> _qualification;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IQualificationRepository _qualificationRepository;
+        private readonly IHRInformationRepository _hrInformationRepository;
 
 
 
-
-        public EmployeeService(IEmployeeRepository employeeRepository, IQualificationRepository qualificationRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository, IQualificationRepository qualificationRepository, IHRInformationRepository hrInformationRepository)
         {
 
             _employeeRepository = employeeRepository;
             _qualificationRepository = qualificationRepository;
+            _hrInformationRepository = hrInformationRepository;
             //   _qualification = database.GetCollection<EmployeeQualification>(settings.QualificationCollectionName);
 
 
@@ -78,45 +82,85 @@ namespace EmployeesRecord.Core.Service
         }
 
 
-
-        //public Employee Get(Guid Id)
-        //{
-        //    var employee = _employeeRepository.GetEmployees();
-
-
-        //    return employee;
+        public List<HRInformation> GetHRInformation()
+        {
+            var information = _hrInformationRepository.GetHRInformation();
 
 
-        //}
-        //public Employee Create(Employee employee)
+            var dtos = new List<HRInformation>();
 
-        //{
-        //    employee.Id = Guid.NewGuid();
 
-        //    var employee1 = _employeeRepository.Create();
+            foreach
+            (var employeeinfo in information)
+            {
+                var dto = new HRInformation
+                {
+                    EmployeeId = employeeinfo.EmployeeId,
+                    ECnumber = employeeinfo.ECnumber,
+                    EmployeeCategory = employeeinfo.EmployeeCategory,
+                    Salary = employeeinfo.Salary,
+                    MedicalAidType = employeeinfo.MedicalAidType
 
-        //    return employee1;
+                };
+
+                dtos.Add(dto);
+
+            }
+            return dtos;
+
+
+        }
+
+        public string Create(Employee employee)
+        {
+
+            var employee2 = new EmployeeEntity
+            {
+                Department = employee.Department,
+                Id = employee.Id,
+                JobTitle = employee.JobTitle,
+                Name = employee.Name,
+                Surname = employee.Surname
+            };
+            employee.Id = Guid.NewGuid();
+
+            _employeeRepository.Create(employee2);
+            return employee.Id.ToString();
+
+
+        }
+        public string CreateInfo(HRInformation hRInformation)
+        {
+
+            var information1 = new HRInformationEntity
+            {
+                ECnumber = hRInformation.ECnumber,
+                EmployeeCategory = hRInformation.EmployeeCategory,
+                EmployeeId = hRInformation.EmployeeId,
+                MedicalAidType = hRInformation.MedicalAidType,
+                Salary = hRInformation.Salary,
+            };
+
+
+            _hrInformationRepository.CreateInfo(information1);
+
+            return "Employee information successfully uploaded";
+        }
+
 
     }
 
-    // public List<EmployeeQualification> GetEmployeeQualifications()
-    // {            return _qualification.Find(qualification => true).ToList();     }
-
-
-
-    //public EmployeeQualification Create(EmployeeQualification employeeQualification)
-    //{
-    //   var qualifications = _qualification.InsertOne(employeeQualification);
-
-    //    return qualifications;
-
-
-    //}
-
-
-
 
 }
+
+
+//public Employee Get(Guid Id)
+//{
+//    var employee = _employeeRepository.GetEmployees();
+
+
+//    return employee;
+
 
 
 

@@ -9,20 +9,21 @@ namespace EmployeesRecord.Infrastructure
     public class QualificationRepository: IQualificationRepository
     {
         private readonly IMongoCollection<QualificationEntity> _qualification;
-        public string EmployeeCollectionName { get; set; }
+       // public string EmployeeCollectionName { get; set; }
 
-        public string QualificationCollectionName { get; set; }
+        //public string QualificationCollectionName { get; set; }
 
-        public string ConnectionString { get; set; }
+       // public string ConnectionString { get; set; }
 
-        public string DatabaseName { get; set; }
+        //public string DatabaseName { get; set; }
 
-
-        public QualificationRepository()
+        private readonly Dbcontext _dbcontext;
+        public QualificationRepository(Dbcontext dbcontext)
         {
-            var client = new MongoClient(ConnectionString);
-            var database = client.GetDatabase(DatabaseName);
-            _qualification = database.GetCollection<QualificationEntity>(QualificationCollectionName);
+            _dbcontext = dbcontext;
+            var client = new MongoClient(_dbcontext.ConnectionString);
+            var database = client.GetDatabase(_dbcontext.DatabaseName);
+            _qualification = database.GetCollection<QualificationEntity>(_dbcontext.QualificationCollectionName);
         }
         public List<QualificationEntity> GetEmployeeQualifications()
         {
