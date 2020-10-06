@@ -1,6 +1,6 @@
 ﻿
-using EmployeesRecord.Core.Models;
-using EmployeesRecord.Core.Service;
+using EmployeesRecordCommand.Core.Models;
+using EmployeesRecordCommand.Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -24,25 +24,7 @@ namespace EmployeesCommand.Controllers
         }
 
 
-        [HttpGet]
-        // public ActionResult<List<EmployeeQualification>> GetEmployeeQualifications() =>
-
-        //qualificationService.GetEmployeeQualifications();
-        public ActionResult<List<EmployeeQualification>> GetEmployeeQualifications()
-        {
-            var result = qualificationService.GetEmployeeQualifications();
-
-            return Ok(result);
-        }
-
-
-        // GET api/<QualificationCommandController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+       
         // POST api/<QualificationCommandController>
         //[HttpPost]
         //public string Create(EmployeeQualification employeeQualification)

@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeeRecordQuery.Core.QueryService;
+using EmployeesRecord.Infrastructure;
+using EmployeesRecord.Infrastructure.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace EmployeesQuery
 {
@@ -26,6 +30,23 @@ namespace EmployeesQuery
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Configure<Dbcontext>(Configuration.GetSection(nameof(Dbcontext)));
+            IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.Entities.Dbcontext>)(sp => sp.GetRequiredService<IOptions<Dbcontext>>().Value));
+            services.AddTransient<EmployeeQueryService>();
+            // services.AddTransient<IQualificationRepository, Employeedbset>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IQualificationRepository, QualificationRepository>();
+            services.AddTransient<IHRInformationRepository, HRInformationRepository>();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1",
+             new Microsoft.OpenApi.Models.OpenApiInfo
+             {
+                 Title = "HR Employees365 API",
+                 Description = "Managing Employees",
+                 Version = "v1",
+             });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

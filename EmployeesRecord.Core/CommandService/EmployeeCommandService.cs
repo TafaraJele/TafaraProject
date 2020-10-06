@@ -2,11 +2,12 @@
 using EmployeesRecord.Core.Models;
 using EmployeesRecord.Infrastructure;
 using EmployeesRecord.Infrastructure.Entities;
+using EmployeesRecordCommand.Core.Models;
 using System;
 using System.Collections.Generic;
 
 
-namespace EmployeesRecord.Core.Service
+namespace EmployeesRecordCommand.Core.Service
 {
     public class EmployeeCommandService : IEmployeeService
     {

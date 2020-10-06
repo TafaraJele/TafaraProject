@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EmployeesRecord.Core\EmployeesRecord.Core.csproj" />
+    <ProjectReference Include="..\EmployeesRecord.Core\EmployeesRecordCommand.Core.csproj" />
     <ProjectReference Include="..\EmployeesRecord.Infrastructure\EmployeesRecord.Infrastructure.csproj" />
   </ItemGroup>
 

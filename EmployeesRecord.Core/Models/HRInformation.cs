@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace EmployeesRecord.Core.Models
+namespace EmployeesRecordCommand.Core.Models
 {
     [DataContract]
     public class HRInformation

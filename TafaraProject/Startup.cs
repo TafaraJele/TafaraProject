@@ -1,7 +1,7 @@
 
-using EmployeesRecord.Core.Service;
 using EmployeesRecord.Infrastructure;
 using EmployeesRecord.Infrastructure.Entities;
+using EmployeesRecordCommand.Core.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

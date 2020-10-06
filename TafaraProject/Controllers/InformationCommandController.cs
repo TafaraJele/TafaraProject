@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeesRecord.Core.Models;
-using EmployeesRecord.Core.Service;
+using EmployeesRecordCommand.Core.Models;
+using EmployeesRecordCommand.Core.Service;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,22 +24,6 @@ namespace EmployeesCommand.Controllers
 
 
 
-        // GET: api/<controller>
-        [HttpGet]
-        public List<HRInformation> GetHRInformation()
-        {
-
-            var result = employeeService.GetHRInformation();
-
-            return result;
-        }
-
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<controller>
         [HttpPost]

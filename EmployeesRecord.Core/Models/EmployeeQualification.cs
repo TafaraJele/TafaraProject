@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace EmployeesRecord.Core.Models
+namespace EmployeesRecordCommand.Core.Models
 {
     [DataContract]
     public class EmployeeQualification
