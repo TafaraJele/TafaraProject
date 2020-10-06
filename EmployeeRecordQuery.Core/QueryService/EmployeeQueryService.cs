@@ -1,13 +1,12 @@
 ﻿using EmployeesRecord.Core.Models;
 using EmployeesRecord.Infrastructure;
-using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace EmployeeRecordQuery.Core.QueryService
 {
     public class EmployeeQueryService
-    { {
+    { 
 
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IQualificationRepository _qualificationRepository;
