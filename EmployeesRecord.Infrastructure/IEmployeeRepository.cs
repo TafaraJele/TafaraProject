@@ -10,8 +10,14 @@ namespace EmployeesRecord.Infrastructure
 
         
         List<EmployeeEntity> GetEmployees();
+
+        //EmployeeEntity GetEmployee(Guid Id);
+
         string Create(EmployeeEntity employee);
 
+        string UpdateEmployee(Guid Id,EmployeeEntity employee);
+
+        string DeleteEmployee(Guid Id);
         
     }
 

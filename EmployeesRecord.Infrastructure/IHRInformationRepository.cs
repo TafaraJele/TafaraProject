@@ -13,5 +13,9 @@ namespace EmployeesRecord.Infrastructure
 
         string CreateInfo(HRInformationEntity hRInformation);
 
+        string EditEmployeeInfo(Guid Id, HRInformationEntity hRInformation);
+
+        void DeleteInformation(Guid id);
+
     }
 }

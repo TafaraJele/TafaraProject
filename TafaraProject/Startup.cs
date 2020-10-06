@@ -26,7 +26,7 @@ namespace TafaraProject
             services.AddControllers();
             services.Configure<Dbcontext>(Configuration.GetSection(nameof(Dbcontext)));
             IServiceCollection serviceCollection = services.AddSingleton((System.Func<System.IServiceProvider, EmployeesRecord.Infrastructure.Entities.Dbcontext>)(sp => sp.GetRequiredService<IOptions<Dbcontext>>().Value));
-            services.AddTransient<EmployeeService>();
+            services.AddTransient<EmployeeCommandService>();
             // services.AddTransient<IQualificationRepository, Employeedbset>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient< IQualificationRepository, QualificationRepository>();

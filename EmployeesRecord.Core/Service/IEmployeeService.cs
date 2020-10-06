@@ -17,5 +17,7 @@ namespace EmployeesRecord.Core.Service
         List<EmployeeQualification> GetEmployeeQualifications();
 
         List<HRInformation> GetHRInformation();
+
+        //Employee GetEmployee(Guid Id);
     }
 }

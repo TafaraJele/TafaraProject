@@ -7,16 +7,16 @@ using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace EmployeesWrite.Controllers
+namespace EmployeesCommand.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QualificationController : ControllerBase
+    public class QualificationCommandController : ControllerBase
     {
-        // GET: api/<QualificationController>
-        private readonly EmployeeService qualificationService;
+        // GET: api/<QualificationCommandController>
+        private readonly EmployeeCommandService qualificationService;
 
-        public QualificationController(EmployeeService _qualificationService)
+        public QualificationCommandController(EmployeeCommandService _qualificationService)
 
         {
             qualificationService = _qualificationService;
@@ -36,14 +36,14 @@ namespace EmployeesWrite.Controllers
         }
 
 
-        // GET api/<QualificationController>/5
+        // GET api/<QualificationCommandController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<QualificationController>
+        // POST api/<QualificationCommandController>
         //[HttpPost]
         //public string Create(EmployeeQualification employeeQualification)
         //{
@@ -51,13 +51,13 @@ namespace EmployeesWrite.Controllers
 
         //    return "successful";
 
-        // PUT api/<QualificationController>/5
+        // PUT api/<QualificationCommandController>/5
         //    [HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
         //{
         //}
 
-        // DELETE api/<QualificationController>/5
+        // DELETE api/<QualificationCommandController>/5
         //[HttpDelete("{id}")]
         //public void Delete(int id)
         //{

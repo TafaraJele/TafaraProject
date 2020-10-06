@@ -16,7 +16,7 @@ namespace EmployeesRecord.Infrastructure
         {
             var client = new MongoClient(dbcontext.ConnectionString);
             var database = client.GetDatabase(dbcontext.DatabaseName);
-            _information = database.GetCollection<HRInformationEntity>(dbcontext.EmployeeCollectionName);
+            _information = database.GetCollection<HRInformationEntity>(dbcontext.HRInformationCollectionName);
         }
 
         public List<HRInformationEntity> GetHRInformation()
@@ -31,5 +31,22 @@ namespace EmployeesRecord.Infrastructure
             return "Employee information successfully uploaded";
 
         }
+
+        public string EditEmployeeInfo(Guid Id, HRInformationEntity hRInformation)
+
+        {
+            FilterDefinition<HRInformationEntity> filter = Builders<HRInformationEntity>.Filter.Eq("_id", Id);
+
+            _information.ReplaceOneAsync(filter, hRInformation);
+            return "";
+        }
+        public void DeleteInformation(Guid id)
+        {
+            FilterDefinition<HRInformationEntity> filter = Builders<HRInformationEntity>.Filter.Eq("_id", id);
+            _information.DeleteOneAsync(filter);
+        }
+
+
+
     }
 }

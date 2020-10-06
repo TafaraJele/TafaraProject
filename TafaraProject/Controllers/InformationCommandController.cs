@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace EmployeesWrite.Controllers
+namespace EmployeesCommand.Controllers
 {
     [Route("api/[controller]")]
-    public class InformationController : Controller
+    public class InformationCommandController : Controller
     {
-        private readonly EmployeeService employeeService;
+        private readonly EmployeeCommandService employeeService;
 
-        public InformationController(EmployeeService _employeeService)
+        public InformationCommandController(EmployeeCommandService _employeeService)
 
         {
             employeeService = _employeeService;
@@ -50,16 +50,20 @@ namespace EmployeesWrite.Controllers
             return "Employee information successfully uploaded";
         }
 
-        // PUT api/<controller>/5
+        //// PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public string EditEmployeeInfo(Guid id, [FromBody] HRInformation hRInformation)
         {
+            employeeService.EditEmployeeInfo(id, hRInformation);
+
+            return "File successfully created";
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteInformation(Guid id)
         {
+            employeeService.DeleteInformation(id);
         }
     }
 }

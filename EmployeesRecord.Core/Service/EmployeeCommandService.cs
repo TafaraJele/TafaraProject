@@ -8,25 +8,20 @@ using System.Collections.Generic;
 
 namespace EmployeesRecord.Core.Service
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeCommandService : IEmployeeService
     {
 
-
-        //private readonly IMongoCollection<EmployeeQualification> _qualification;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IQualificationRepository _qualificationRepository;
         private readonly IHRInformationRepository _hrInformationRepository;
 
 
-
-        public EmployeeService(IEmployeeRepository employeeRepository, IQualificationRepository qualificationRepository, IHRInformationRepository hrInformationRepository)
+        public EmployeeCommandService(IEmployeeRepository employeeRepository, IQualificationRepository qualificationRepository, IHRInformationRepository hrInformationRepository)
         {
 
             _employeeRepository = employeeRepository;
             _qualificationRepository = qualificationRepository;
             _hrInformationRepository = hrInformationRepository;
-            //   _qualification = database.GetCollection<EmployeeQualification>(settings.QualificationCollectionName);
-
 
         }
         public List<Employee> GetEmployees()
@@ -53,6 +48,13 @@ namespace EmployeesRecord.Core.Service
             // map entity to dto
 
         }
+
+        //public Employee GetEmployee(Guid Id)
+        //{
+        //    Employee  employee = new EmployeeEntity
+        //    { };
+        //    return _employeeRepository.GetEmployee(Id);
+        //}
 
         public List<EmployeeQualification> GetEmployeeQualifications()
 
@@ -147,19 +149,59 @@ namespace EmployeesRecord.Core.Service
             return "Employee information successfully uploaded";
         }
 
+        public string UpdateEmployee(Guid Id, Employee employee)
+        {
+            var employee1 = new EmployeeEntity
+            {
+                Id = employee.Id,
+                Department = employee.Department,
+                JobTitle = employee.JobTitle,
+                Name = employee.Name,
+                Surname = employee.Surname
 
+            };
+            employee.Id = Guid.NewGuid();
+            _employeeRepository.UpdateEmployee(Id, employee1);
+
+            return employee.Id.ToString();
+        }
+
+        public string DeleteEmployee(Guid Id)
+        {
+
+            _employeeRepository.DeleteEmployee(Id);
+
+            return "Successfully deleted";
+        }
+
+        public string EditEmployeeInfo(Guid Id, HRInformation hRInformation)
+        {
+            var hRinfors = new HRInformationEntity
+            { 
+                EmployeeId = hRInformation.EmployeeId,
+                ECnumber = hRInformation.ECnumber,
+                EmployeeCategory =hRInformation.EmployeeCategory,
+                MedicalAidType =hRInformation.MedicalAidType,
+                Salary = hRInformation.Salary
+            };
+
+
+            _hrInformationRepository.EditEmployeeInfo(Id, hRinfors);
+
+            return "Employee Information Successfully Updated";
+
+        }
+        public void DeleteInformation(Guid id)
+        {
+            _hrInformationRepository.DeleteInformation(id);
+
+        }
     }
-
 
 }
 
 
-//public Employee Get(Guid Id)
-//{
-//    var employee = _employeeRepository.GetEmployees();
 
-
-//    return employee;
 
 
 
