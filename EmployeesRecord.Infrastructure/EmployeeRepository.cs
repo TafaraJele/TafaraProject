@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EmployeesRecord.Infrastructure
 {
@@ -22,9 +23,13 @@ namespace EmployeesRecord.Infrastructure
             
         }   
 
-        public List<EmployeeEntity> GetEmployees()
+        public async Task<List<EmployeeEntity>> GetEmployees()
         {
-            return _employee.Find(employee => true).ToList();        }
+            //FilterDefinition<EmployeeEntity> filter = Builders<EmployeeEntity>.Filter.Empty;
+            // var result = (await _employee.FindAsync(filter)).ToList();
+          var result =  (await _employee.FindAsync(employee => true)).ToList();
+            return result;
+        }
 
         //public EmployeeEntity GetEmployee(Guid Id)
             

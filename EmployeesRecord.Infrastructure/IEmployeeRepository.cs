@@ -2,6 +2,7 @@
 using EmployeesRecord.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EmployeesRecord.Infrastructure
 {
@@ -9,7 +10,7 @@ namespace EmployeesRecord.Infrastructure
     {
 
         
-        List<EmployeeEntity> GetEmployees();
+        Task<List<EmployeeEntity>> GetEmployees();
 
         //EmployeeEntity GetEmployee(Guid Id);
 

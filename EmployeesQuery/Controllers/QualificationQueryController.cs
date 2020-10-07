@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeeQuery.QueryService;
+using EmployeesRecordCommand.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,36 +13,19 @@ namespace EmployeesQuery.Controllers
     [ApiController]
     public class QualificationCommandController : ControllerBase
     {
-        // GET: api/QualificationCommand
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly EmployeeQueryService _employeeQueryService;
+
+
+        public QualificationCommandController(EmployeeQueryService employeeQueryService)
         {
-            return new string[] { "value1", "value2" };
+
+            _employeeQueryService = employeeQueryService;
         }
 
-        // GET: api/QualificationCommand/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public List<EmployeeQualification> GetEmployeeQualifications() 
         {
-            return "value";
+            return _employeeQueryService.GetEmployeeQualifications();
         }
-
-        // POST: api/QualificationCommand
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT: api/QualificationCommand/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+    
     }
 }

@@ -36,7 +36,7 @@ namespace TafaraProject
                 options.SwaggerDoc("v1",
              new Microsoft.OpenApi.Models.OpenApiInfo
              {
-                 Title = "HR Employees365 API",
+                 Title = "HR Employees365 Command API",
                  Description = "Managing Employees",
                  Version = "v1",
              });
@@ -64,7 +64,7 @@ namespace TafaraProject
             app.UseSwagger();
             app.UseSwaggerUI(Options =>
             {
-                Options.SwaggerEndpoint("/swagger/v1/swagger.json", "HR Employees365 API");
+                Options.SwaggerEndpoint("/swagger/v1/swagger.json", "HR Employees365 Command API");
             });
 
         }

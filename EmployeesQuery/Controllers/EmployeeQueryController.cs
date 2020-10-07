@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeRecordQuery.Core.QueryService;
+using EmployeeQuery.QueryService;
 using EmployeesRecord.Core.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +24,10 @@ namespace EmployeesQuery.Controllers
         //GET: api/Employee
 
         [HttpGet]
-        public ActionResult<List<Employee>> GetEmployees()
+        public async Task<ActionResult<List<Employee>>> GetEmployees()
         {
-            var result = employeeService.GetEmployees();
+            var result = await employeeService.GetEmployees();
+
             return Ok(result);
         }
 

@@ -9,16 +9,14 @@ namespace EmployeesRecordCommand.Core.Service
 {
     public interface IEmployeeService
     {
-        List<Employee> GetEmployees();
+        
 
-        //Employee Get(Guid Id);
-
-        //Employee Create(Employee employee);
-
-        List<EmployeeQualification> GetEmployeeQualifications();
-
-        List<HRInformation> GetHRInformation();
-
-        //Employee GetEmployee(Guid Id);
+        string Create(Employee employee);
+        string CreateInfo(HRInformation hRInformation);
+        string UpdateEmployee(Guid Id, Employee employee);
+        string DeleteEmployee(Guid Id);
+        string EditEmployeeInfo(Guid Id, HRInformation hRInformation);
+        void DeleteInformation(Guid id);
+       
     }
 }

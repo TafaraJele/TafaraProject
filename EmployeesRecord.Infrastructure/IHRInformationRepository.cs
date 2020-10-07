@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EmployeesRecord.Infrastructure
 {
@@ -9,7 +10,7 @@ namespace EmployeesRecord.Infrastructure
     {
 
 
-        List<HRInformationEntity> GetHRInformation();
+        Task<List<HRInformationEntity>> GetHRInformation();
 
         string CreateInfo(HRInformationEntity hRInformation);
 

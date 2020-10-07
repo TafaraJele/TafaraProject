@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EmployeesRecord.Infrastructure
 {
@@ -19,9 +20,10 @@ namespace EmployeesRecord.Infrastructure
             _information = database.GetCollection<HRInformationEntity>(dbcontext.HRInformationCollectionName);
         }
 
-        public List<HRInformationEntity> GetHRInformation()
+        public async Task<List<HRInformationEntity>> GetHRInformation()
         {
-            return _information.Find(information => true).ToList();
+            return (await _information.FindAsync(information => true)).ToList();
+            
         }
 
         public string CreateInfo(HRInformationEntity hRInformation)

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeRecordQuery.Core.QueryService;
+using EmployeeQuery.QueryService;
 using EmployeesRecord.Infrastructure;
 using EmployeesRecord.Infrastructure.Entities;
 using Microsoft.AspNetCore.Builder;
@@ -42,7 +42,7 @@ namespace EmployeesQuery
                 options.SwaggerDoc("v1",
              new Microsoft.OpenApi.Models.OpenApiInfo
              {
-                 Title = "HR Employees365 API",
+                 Title = "HR Employees365 Query API",
                  Description = "Managing Employees",
                  Version = "v1",
              });
@@ -66,6 +66,11 @@ namespace EmployeesQuery
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(Options =>
+            {
+                Options.SwaggerEndpoint("/swagger/v1/swagger.json", "HR Employees365 Query API");
             });
         }
     }
