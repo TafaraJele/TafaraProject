@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace EmployeesRecord.Infrastructure
 {
@@ -25,9 +26,9 @@ namespace EmployeesRecord.Infrastructure
             var database = client.GetDatabase(_dbcontext.DatabaseName);
             _qualification = database.GetCollection<QualificationEntity>(_dbcontext.QualificationCollectionName);
         }
-        public List<QualificationEntity> GetEmployeeQualifications()
+        public async Task<List<QualificationEntity>> GetEmployeeQualifications()
         {
-            return _qualification.Find(qualification => true).ToList();
+            return (await _qualification.FindAsync(qualification => true)).ToList();
         }
 
 

@@ -14,4 +14,8 @@
     <ProjectReference Include="..\EmployeesRecord.Infrastructure\EmployeesRecord.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
+
 </Project>

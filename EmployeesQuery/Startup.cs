@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EmployeeQuery.QueryService;
+using EmployeesQuery.QueryService;
 using EmployeesRecord.Infrastructure;
 using EmployeesRecord.Infrastructure.Entities;
 using Microsoft.AspNetCore.Builder;
@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace EmployeesQuery
+namespace TafaraProject
 {
     public class Startup
     {

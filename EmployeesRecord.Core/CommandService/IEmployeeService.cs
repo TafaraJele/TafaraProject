@@ -11,8 +11,8 @@ namespace EmployeesRecordCommand.Core.Service
     {
         
 
-        string Create(Employee employee);
-        string CreateInfo(HRInformation hRInformation);
+        ApiResult Create(Employee employee);
+        HrApiResult CreateInfo(HRInformation hRInformation);
         string UpdateEmployee(Guid Id, Employee employee);
         string DeleteEmployee(Guid Id);
         string EditEmployeeInfo(Guid Id, HRInformation hRInformation);

@@ -1,8 +1,10 @@
 ﻿using EmployeesRecord.Core.Models;
+using EmployeesRecordCommand.Core;
 using EmployeesRecordCommand.Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace TafaraProject.Controllers
 {
@@ -12,7 +14,7 @@ namespace TafaraProject.Controllers
     {
 
         private readonly EmployeeCommandService employeeService;
-
+        ApiResult apiResult = new ApiResult();
         public EmployeeCommandController(EmployeeCommandService _employeeService)
 
         {
@@ -23,13 +25,14 @@ namespace TafaraProject.Controllers
 
         //POST: api/Employee
         [HttpPost]
-        public string Create([FromBody] Employee employee)
+        public ApiResult Create ([FromBody] Employee employee)
+            
         {
-             employeeService.Create(employee);
+              employeeService.Create(employee);
 
-            return employee.Id.ToString();
+            return apiResult;
         }
-
+    
         // PUT: api/Employee/5
         [HttpPut]
         [Route("{Id}")]

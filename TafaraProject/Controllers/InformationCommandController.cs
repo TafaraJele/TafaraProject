@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeesRecordCommand.Core;
 using EmployeesRecordCommand.Core.Models;
 using EmployeesRecordCommand.Core.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -14,24 +15,22 @@ namespace EmployeesCommand.Controllers
     public class InformationCommandController : Controller
     {
         private readonly EmployeeCommandService employeeService;
-
+        HrApiResult hrApiResult = new HrApiResult();
         public InformationCommandController(EmployeeCommandService _employeeService)
 
         {
             employeeService = _employeeService;
-
-        }
-
-
+            
+        }        
 
 
         // POST api/<controller>
         [HttpPost]
-        public string CreateInfo( [FromBody]  HRInformation hRInformation)
+        public HrApiResult CreateInfo( [FromBody]  HRInformation hRInformation)
         {
             employeeService.CreateInfo(hRInformation);
 
-            return "Employee information successfully uploaded";
+            return hrApiResult;
         }
 
         //// PUT api/<controller>/5

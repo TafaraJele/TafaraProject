@@ -39,11 +39,11 @@ namespace EmployeesRecord.Infrastructure
         //}
 
        
-        public string Create(EmployeeEntity employeeEntity)
+        public Guid Create(EmployeeEntity employeeEntity)
         {
-           _employee.InsertOne(employeeEntity);
+            _employee.InsertOne(employeeEntity);
 
-            return "Employee successfully created";
+            return employeeEntity.Id;
         }
        public string UpdateEmployee(Guid Id, EmployeeEntity employeeEntity)
         {

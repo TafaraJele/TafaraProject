@@ -5,7 +5,7 @@ using EmployeesRecordCommand.Core.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace EmployeeQuery.QueryService
+namespace EmployeesQuery.QueryService
 {
     public class EmployeeQueryService: IEmployeeQueryService
     { 
@@ -64,11 +64,11 @@ namespace EmployeeQuery.QueryService
         //    return _employeeRepository.GetEmployee(Id);
         //}
 
-        public List<EmployeeQualification> GetEmployeeQualifications()
+        public async Task<List<EmployeeQualification>> GetEmployeeQualifications()
 
         {
 
-            var qualifications = _qualificationRepository.GetEmployeeQualifications();
+            var qualifications = await _qualificationRepository.GetEmployeeQualifications();
 
             var dtos = new List<EmployeeQualification>();
 

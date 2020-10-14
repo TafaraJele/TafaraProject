@@ -9,17 +9,17 @@ namespace EmployeesRecord.Infrastructure
     public interface IEmployeeRepository
     {
 
-        
+
         Task<List<EmployeeEntity>> GetEmployees();
 
         //EmployeeEntity GetEmployee(Guid Id);
 
-        string Create(EmployeeEntity employee);
+        Guid Create(EmployeeEntity employee);
 
-        string UpdateEmployee(Guid Id,EmployeeEntity employee);
+        string UpdateEmployee(Guid Id, EmployeeEntity employee);
 
         string DeleteEmployee(Guid Id);
-        
+
     }
 
 

@@ -24,25 +24,25 @@ namespace EmployeesCommand.Controllers
         }
 
 
-       
+
         // POST api/<QualificationCommandController>
         //[HttpPost]
         //public string Create(EmployeeQualification employeeQualification)
         //{
-        //     qualificationService.Create(employeeQualification);
+        //    qualificationService.Create(employeeQualification);
 
         //    return "successful";
-
-        // PUT api/<QualificationCommandController>/5
-        //    [HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
         //}
+            // PUT api/<QualificationCommandController>/5
+            //    [HttpPut("{id}")]
+            //public void Put(int id, [FromBody] string value)
+            //{
+            //}
 
-        // DELETE api/<QualificationCommandController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-   // }
-}
+            // DELETE api/<QualificationCommandController>/5
+            //[HttpDelete("{id}")]
+            //public void Delete(int id)
+            //{
+            // }
+        }
 }

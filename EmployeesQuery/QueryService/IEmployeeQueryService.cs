@@ -10,7 +10,7 @@ namespace EmployeesQuery.QueryService
     interface IEmployeeQueryService
     {
         Task<List<Employee>> GetEmployees();
-        List<EmployeeQualification> GetEmployeeQualifications();
+        Task<List<EmployeeQualification>> GetEmployeeQualifications();
         Task<List<HRInformation>>GetHRInformation();
     }
 }

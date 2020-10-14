@@ -2,6 +2,7 @@
 using EmployeesRecord.Core.Models;
 using EmployeesRecord.Infrastructure;
 using EmployeesRecord.Infrastructure.Entities;
+using EmployeesRecordCommand.Core.Aggregate;
 using EmployeesRecordCommand.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -26,40 +27,38 @@ namespace EmployeesRecordCommand.Core.Service
 
         }
        
-        public string Create(Employee employee)
+        public  ApiResult Create(Employee employee)
         {
+            var aggregate = new EmployeeAggregate();
 
-            var employee2 = new EmployeeEntity
-            {
-                Department = employee.Department,
-                Id = employee.Id,
-                JobTitle = employee.JobTitle,
-                Name = employee.Name,
-                Surname = employee.Surname
-            };
+                       
             employee.Id = Guid.NewGuid();
 
-            _employeeRepository.Create(employee2);
-            return employee.Id.ToString();
+            
 
+            var apiResult =  aggregate.SaveEmployee(employee);
+           //ApiResult apiResult = new ApiResult();
 
-        }
-        public string CreateInfo(HRInformation hRInformation)
-        {
-
-            var information1 = new HRInformationEntity
+            if (apiResult.IsValid)
             {
-                ECnumber = hRInformation.ECnumber,
-                EmployeeCategory = hRInformation.EmployeeCategory,
-                EmployeeId = hRInformation.EmployeeId,
-                MedicalAidType = hRInformation.MedicalAidType,
-                Salary = hRInformation.Salary,
-            };
+                _employeeRepository.Create(aggregate.Entity);
+            }
+            return apiResult;                               
 
+           
+        }
+        public HrApiResult CreateInfo(HRInformation hRInformation)
+        {
+            var aggregate = new HRInformationAggregate();
 
-            _hrInformationRepository.CreateInfo(information1);
+            var hrApiResult = aggregate.SaveHrInformation(hRInformation);
 
-            return "Employee information successfully uploaded";
+            
+            if (hrApiResult.IsValid)
+            {
+                _hrInformationRepository.CreateInfo(aggregate.HrEntity);
+            }
+            return hrApiResult;
         }
 
         public string UpdateEmployee(Guid Id, Employee employee)
